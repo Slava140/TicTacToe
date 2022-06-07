@@ -19,7 +19,7 @@ namespace TicTacToe
     {
         private string _currentTheme = "Dark";
 
-        private readonly byte _mode = 10;
+        private readonly byte _mode = 3;
         private readonly int _cellSize;
         private readonly double _margin;
 
@@ -37,7 +37,7 @@ namespace TicTacToe
 
             RefreshField();
         }
-        private void ThemeChange(object sender, RoutedEventArgs e)
+        private void ThemeChange(object sender, MouseButtonEventArgs e)
         {
             _currentTheme = _currentTheme == "Light" ? "Dark" : "Light";
             Resources = new ResourceDictionary { Source = new Uri($"Themes/{_currentTheme}.xaml", UriKind.Relative) };
@@ -85,17 +85,16 @@ namespace TicTacToe
                 _game.CheckWinner();
             }
             RefreshField();
-            label.Content = _game.winner;
-            _ = GameCanvas.Children.Add(label);
+            Header.Children.Add(SetElement(_game.winner, 100, 0, 0));
         }
         private void ThemeChangeButton_MouseMove(object sender, MouseEventArgs e)
         {
-
+            label.Content = "Hover";
         }
         private void RefreshField()
         {
             GameCanvas.Children.Clear();
-            //DrawGrid();
+            DrawGrid();
 
             string[] field = _game.GameField;
 
@@ -103,21 +102,21 @@ namespace TicTacToe
             {
                 for (byte x = 0; x < _mode; x++)
                 {
-                    DrawElement(field[y][x], _cellSize - _margin * 2, (x * _cellSize) + _margin, (y * _cellSize) + _margin);
+                    GameCanvas.Children.Add(SetElement(field[y][x], _cellSize - _margin * 2, (x * _cellSize) + _margin, (y * _cellSize) + _margin));
                 }
             }
         }
-        private void DrawElement(char element, double size, double x, double y)
+        private Canvas SetElement(char element, double size, double x, double y)
         {
             Canvas elementCanvas = GenerateElement(element, size);
             Canvas.SetLeft(elementCanvas, x);
             Canvas.SetTop(elementCanvas, y);
 
-            GameCanvas.Children.Add(elementCanvas);
+            return elementCanvas;
         }
         private Canvas GenerateElement(char element, double size)
         {
-            Canvas elementCanvas = new Canvas { Width = size, Height = size};
+            Canvas elementCanvas = new Canvas { Width = size, Height = size };
 
             if (element == 'x')
             {

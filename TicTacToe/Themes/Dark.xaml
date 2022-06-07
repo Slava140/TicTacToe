@@ -29,25 +29,19 @@
         <Setter Property="Background" Value="{StaticResource FieldColor}"/>
         <Setter Property="CornerRadius" Value="15"/>
     </Style>
+    
+    <Style x:Key="ThemeChangeButtonStyle" TargetType="Border">
+        <Setter Property="Background" Value="{StaticResource GameElementsColor}"/>
+        <Setter Property="CornerRadius" Value="15"/>
+        <Setter Property="Opacity" Value="0.7"/>
+    </Style>
 
-    <!--<Button x:Name="ThemeChangeButton">
-        <Button.Template >
-            <ControlTemplate>
-                <Border Background="Black">
-                    <Label/>
-                </Border>
-            </ControlTemplate>
-        </Button.Template>
-    </Button>-->
-    <Style x:Key="ThemeChangeButtonStyle" TargetType="Button">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Border Background="AliceBlue" CornerRadius="15">
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
+    <Style x:Key="ThemeChangeButtonIcon" TargetType="Label">
+        <Setter Property="FontFamily" Value="Segoe UI Symbol"/>
+        <Setter Property="FontSize" Value="25"/>
+        <Setter Property="Foreground" Value="{StaticResource BackgroundColor}"/>
+        <Setter Property="Content" Value="☀"/>
+        <Setter Property="Margin" Value="0, -2, 0, 0"/>
     </Style>
 
 </ResourceDictionary>

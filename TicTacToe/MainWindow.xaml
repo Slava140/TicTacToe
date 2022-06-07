@@ -12,7 +12,7 @@
 
     <StackPanel Margin="5">
         <Border Style="{DynamicResource BorderStyle}">
-            <Grid Margin="5" Height="120">
+            <Grid x:Name="Header" Margin="5" Height="120">
 
             </Grid>
         </Border>
@@ -25,9 +25,9 @@
 
         <Border Margin="0, 5, 0, 0" Style="{DynamicResource BorderStyle}">
             <Grid Margin="5" Height="40">
-                <Button x:Name="ThemeChangeButton" Style="{DynamicResource ThemeChangeButtonStyle}" Width="{Binding ElementName=ThemeChangeButton, Path=ActualHeight}"  Click="ThemeChange" HorizontalAlignment="Right" MouseMove="ThemeChangeButton_MouseMove">
-                    
-                </Button>
+                <Border x:Name="ThemeChangeButton" Style="{DynamicResource ThemeChangeButtonStyle}" Width="{Binding ElementName=ThemeChangeButton, Path=ActualHeight}" HorizontalAlignment="Right" MouseMove="ThemeChangeButton_MouseMove" MouseDown="ThemeChange">
+                    <Label Style="{DynamicResource ThemeChangeButtonIcon}" HorizontalAlignment="Center"></Label>
+                </Border>
             </Grid>
         </Border>
     </StackPanel>
